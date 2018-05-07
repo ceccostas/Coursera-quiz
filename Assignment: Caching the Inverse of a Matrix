@@ -14,3 +14,4 @@ makeCacheMatrix
 
 #Inverse of a Matrix
 cacheSolve<- solve(makeCacheMatrix)
+cacheSolve
