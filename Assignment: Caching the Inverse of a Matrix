@@ -3,19 +3,33 @@
 #First make numeric vectors with the function c(,,) to do after my matrix 
 x1<- c(2,1,4) #x1 is the name for the first vector
 x1 #return the numeric vector
+#x1 = 2 1 4 
 
 x2<- c(1,2,6) #x2 is the name for the second vector
 x2 #return the numeric vector
+#x2= 1 2 6
 
 x3<-c(4,6,8) # x3 is the name for the third vector
 x3 # return the numeric vector
+#x3= 4 6 8
 
-#Make the matrix with the funtion rbind(), with 3 cols and 2 rows. 
-#Each vector are the row in my matrix
+#Make the matrix with the funtion rbind(),
+#rbind{base} take a sequence of vector and combine by rows. The function rbind() is S3 generic.
+# My matrix has 3 cols and 2 rows. 
+#The vector x1, x2 and x3 are the each row in my matrix
 makeCacheMatrix<- rbind(x1,x2,x3) # I named my matrix, makeCacheMatrix 
 makeCacheMatrix # return the matrix with my three vectors (x1,x2,x3)
+#makeCacheMatrix= x1    2    1    4
+#                 x2    1    2    6
+#                 x3    4    6    8    
+
 
 #To do the inverse the matrix, I use the function solve()
+# The function solve() is generic function solves the equation a %*% x = b for x, where b can be either a vector or a matrix.
 cacheSolve<- solve(makeCacheMatrix) # I named cacheSolve to my inverse matrix 
 cacheSolve # return the inverse matrix
-   
+#cacheSolve= 
+#     x1    x2       x3
+#  0.6250 -0.50  0.06250
+# -0.5000  0.00  0.25000
+#  0.0625  0.25 -0.09375
