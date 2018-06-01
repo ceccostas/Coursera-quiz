@@ -21,4 +21,3 @@ makeCacheMatrix # return the matrix with my three vectors (x1,x2,x3)
 # The function solve() is generic function solves the equation a %*% x = b for x, where b can be either a vector or a matrix.
 cacheSolve<- solve(makeCacheMatrix) # I named cacheSolve to my inverse matrix 
 cacheSolve # return the inverse matrix
-
