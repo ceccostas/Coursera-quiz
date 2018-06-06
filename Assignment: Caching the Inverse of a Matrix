@@ -1,23 +1,42 @@
-###WEEK3
-##Assignment: Caching the Inverse of a Matrix
-#First make numeric vectors with the function c(,,) to do after my matrix 
-x1<- c(2,1,4) #x1 is the name for the first vector
-x1 #return the numeric vector
+#####WEEK3
+####Assignment: Caching the Inverse of a Matrix
+##For this assignment, assume that the matrix supplied is always invertible
+#The first function called makeCacheMatrix ,creates an special "matrix" object that can cache its inverse.
+#This first function makeCacheMatrix, is really a list containing a function to:
+#1. set the value of the matrix
+#2. get the value of the matrix
+#3. set the value of the inverse
+#4. get the value of the inverse
+makeCacheMatrix <- function(x = matrix()) {
+  i <- NULL
+  set <- function(y) {
+    x <<- y
+    i <<- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) i <<- inverse
+  getinverse <- function() i
+  list(set = set,
+       get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+}
+#The function cacheSolve gets the inverse of the special matrix returned by makeCacheMatrix
+cacheSolve <- function(x, ...) {
+  i <- x$getinverse()
+  if (!is.null(i)) {
+    message("getting cached data")
+    return(i)
+  }
+  data <- x$get()
+  i <- solve(data, ...)
+  x$setinverse(i)
+  i
+}
+### Testing those functions 
+#Example below
 
-x2<- c(1,2,6) #x2 is the name for the second vector
-x2 #return the numeric vector
-
-x3<-c(4,6,8) # x3 is the name for the third vector
-x3 # return the numeric vector
-
-#Make the matrix with the funtion rbind(),
-#rbind{base} take a sequence of vector and combine by rows. The function rbind() is S3 generic.
-# My matrix has 3 cols and 2 rows. 
-#The vector x1, x2 and x3 are the each row in my matrix
-makeCacheMatrix<- rbind(x1,x2,x3) # I named my matrix, makeCacheMatrix 
-makeCacheMatrix # return the matrix with my three vectors (x1,x2,x3)
-
-#To do the inverse the matrix, I use the function solve()
-# The function solve() is generic function solves the equation a %*% x = b for x, where b can be either a vector or a matrix.
-cacheSolve<- solve(makeCacheMatrix) # I named cacheSolve to my inverse matrix 
-cacheSolve # return the inverse matrix
+a<- matrix(c(1,2,3,4),2,2) # I did a matrix that I called a 
+a # return a matrix with 2 cols and 2 rows 
+a1<- makeCacheMatrix(a)
+cacheSolve(a1) # Inverse returned from cache 
